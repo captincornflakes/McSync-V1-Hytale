@@ -1,0 +1,20 @@
+{
+  "Group": "McSync",
+  "Name": "McSync Whitelist",
+  "Version": "${version}",
+  "Description": "Whitelist plugin for Hytale servers",
+  "Authors": [
+    {
+      "Name": "Echo",
+      "Email": "echo@echogrid.wim",
+      "Url": "https://echogrid.win/"
+    }
+  ],
+  "Website": "https://mcsync.live/",
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "Main": "dev.mcsync.main"
+}
