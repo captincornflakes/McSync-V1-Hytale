@@ -10,23 +10,23 @@ public class ConfigFile {
         .append(new KeyedCodec<String>("Token", Codec.STRING),
                 (configFile, value, extraInfo) -> configFile.Token = value,
                 (configFile, extraInfo) -> configFile.Token).add()
-        .append(new KeyedCodec<Boolean>("Debug", Codec.BOOLEAN),
-                (configFile, value, extraInfo) -> configFile.EnableDebug = value,
-                (configFile, extraInfo) -> configFile.EnableDebug).add()
+        .append(new KeyedCodec<String>("Parameters", Codec.STRING),
+                (configFile, value, extraInfo) -> configFile.Parameters = value,
+                (configFile, extraInfo) -> configFile.Parameters).add()
         .build();
 
     private String Token = "Token";
-    private boolean EnableDebug = false;
+    private String Parameters = "false";
 
-
-    public void ConfigFile() {
-
+    // Correct constructor
+    public ConfigFile() {
     }
+
     public String getToken() {
         return Token;
     }
-    
-    public boolean isEnableDebug() {
-        return EnableDebug;
+
+    public String getParameters() {
+        return Parameters;
     }
 }

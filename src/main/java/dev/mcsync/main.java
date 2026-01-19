@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
+import com.hypixel.hytale.server.core.event.events.player.PlayerSetupConnectEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.util.Config;
@@ -40,6 +41,7 @@ public class main extends JavaPlugin {
         * register Events
         */
         this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, Join::onPlayerReady);
-        this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, GateKeeper::onPlayerReady);
-    }
+        this.getEventRegistry().register(PlayerSetupConnectEvent.class, GateKeeper::onPlayerReady);
+
+    }    
 }

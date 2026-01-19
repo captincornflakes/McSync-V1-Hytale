@@ -4,29 +4,29 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import org.json.JSONObject;
 
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.protocol.io.ProtocolException;
 
 
 public class auth {
     public static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
     @SuppressWarnings("deprecation")
-    public static String mcsyncAuth(String token, String uuid) {
+    public static boolean mcsyncAuth(String token, String uuid) {
         boolean authorize = false;
         int tier = 0;
         JSONObject result = new JSONObject();
         HttpURLConnection connection = null;
         String normalizedBase = normalizeBaseUrl("https://api.mcsync.live/");
-        String userAgent = "Mozilla/5.0";
+        String userAgent = "Mozilla/5.0 (compatible; McSyncBot/1.0; +https://api.mcsync.live/)";
         boolean debugLogging = false;
 
         try {
-            URL url = new URL(normalizedBase + "?token=" + token + "&uuid=" + uuid.replace("-", ""));
+            URL url = new URL(normalizedBase + "?token=" + token + "&uuid=" + uuid.replace("-", "") + "&platform=hytale");
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("User-Agent", userAgent);
@@ -60,7 +60,7 @@ public class auth {
 
         result.put("authorize", authorize);
         result.put("tier", tier);
-        return result.toString();
+        return result.getBoolean("authorize");
     }
 
     private static String normalizeBaseUrl(String base) {
