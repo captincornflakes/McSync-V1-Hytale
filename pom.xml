@@ -20,7 +20,7 @@
             <artifactId>HytaleServer-parent</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>F:\GitHub\MCSync\hytale-downloader\2026.01.17-4b0f30090\Server\HytaleServer.jar</systemPath>
+            <systemPath>F:\GitHub\MCSync\V1-Hytale\HytaleServer.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -41,5 +41,24 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

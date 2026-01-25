@@ -18,6 +18,7 @@ public class GateKeeper {
         LOGGER.atInfo().log("Welcome " + username + " Login gateway check initiated!");
         System.out.println("Incoming connection: " + username + " (" + uuid + ")");
 
+        
         if (!auth.mcsyncAuth(token, uuid.toString()) && !token.equals("Token")) {
             LOGGER.atInfo().log("Blocked connection from " + username + " (" + uuid + ") - Failed to authenticate with McSync. Token: " + token);
             event.setCancelled(true);

@@ -18,7 +18,6 @@ public class auth {
     @SuppressWarnings("deprecation")
     public static boolean mcsyncAuth(String token, String uuid) {
         boolean authorize = false;
-        int tier = 0;
         JSONObject result = new JSONObject();
         HttpURLConnection connection = null;
         String normalizedBase = normalizeBaseUrl("https://api.mcsync.live/");
@@ -41,9 +40,8 @@ public class auth {
                         LOGGER.atInfo().log("McSync API response: " + response);
                     }
                     JSONObject data = new JSONObject(response.toString());
-                    authorize = data.getBoolean("subscriber");
-                    tier = data.getInt("tier");
-                    LOGGER.atInfo().log("Authorization: " + authorize + ", Tier: " + tier);
+                    authorize = data.optBoolean("subscriber", false);
+                    LOGGER.atInfo().log("Authorization: " + authorize);
                 } catch (IOException ex) {
                     LOGGER.atSevere().withCause(ex).log("McSync Error!Code:002 - Failed to read response from McSync API.");
                 }
@@ -59,7 +57,6 @@ public class auth {
         }
 
         result.put("authorize", authorize);
-        result.put("tier", tier);
         return result.getBoolean("authorize");
     }
 
