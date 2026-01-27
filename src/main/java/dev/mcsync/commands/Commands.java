@@ -18,7 +18,7 @@ public class Commands extends AbstractCommand {
     @Nullable
     @Override
     protected CompletableFuture<Void> execute(@Nonnull CommandContext context) {
-        context.sendMessage(Message.raw("Hello from Commands!"));
+        context.sendMessage(Message.raw("Hello from McSync This will be replaced soon!"));
         return CompletableFuture.completedFuture(null);
     }
 
